@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title> JS</title>
+
+    <!-- способ 1  -->
+    <script>
+        
+        function showMessageFromHead() {
+            alert('Это сообщение.');
+        }
+
+        
+    </script>
+<button onclick="showMessageFromHead()">Сообщение из HEAD</button>
+    <!-- способ 2 -->
+    <script src="external.js"></script>
+</head>
+<body>
+
+    <h1>Практическая часть работы</h1>
+    <p><em>Демонстрация способов внедрения JS, операторов и диалоговых окон.</em></p>
+
+    
+    <!-- блок диалоговых кнопок           -->
+    
+    <section>
+        <h2>Диалоговые окна</h2>
+        <button onclick="showAlert()">alert</button>
+        <button onclick="showConfirm()">confirm</button>
+        <button onclick="showPrompt()">prompt</button>
+    </section>
+
+    
+    <!-- блок операторов -->
+    <section>
+        <h2>Операторы</h2>
+        <button onclick="demoIf()">if</button>
+        <button onclick="demoSwitch()">switch</button>
+        <button onclick="demoFor()">for</button>
+        <button onclick="demoWhile()">while</button>
+        <button onclick="demoDoWhile()">do..while</button>
+        <button onclick="demoBreakContinue()">break / continue</button>
+        <button onclick="demoReturn()">return (внешний файл)</button>
+        <div id="output" style="border:1px solid #ccc; padding:10px; margin-top:10px; min-height:50px;">
+            Здесь будет результат выполнения операторов.
+        </div>
+    </section>
+
+    
+    <section>
+        <h2>Способы внедрения JS</h2>
+        <!-- Способ 3: скрипт в BODY  -->
+        <p><strong>Способ 3 (скрипт в BODY):</strong> <span id="bodyScriptDemo"></span></p>
+        <script>
+         
+            document.getElementById('bodyScriptDemo').textContent = 'Привет!';
+        </script>
+
+        <!-- Способ 4 код внутри атрибута HTML-элемента -->
+        <p><strong>Способ 4 (в атрибуте onclick):</strong>
+            <button onclick="alert('Этот код написан прямо в атрибуте onclick!')">Нажми меня</button>
+        </p>
+    </section>
+
+    
+    <script>
+        // ---- Диалоговые окна ----
+        function showAlert() {
+            alert('Это обычное окно alert.');
+        }
+
+        function showConfirm() {
+            const result = confirm('Вы согласны продолжить?');
+            alert('Вы нажали: ' + (result ? 'ОК' : 'Отмена'));
+        }
+
+        function showPrompt() {
+            const name = prompt('Введите ваше имя:', 'Гость');
+            if (name !== null) {
+                alert('Привет, ' + name + '!');
+            } else {
+                alert('Вы отменили ввод.');
+            }
+        }
+
+        // ---- Операторы ----
+
+        // if
+        function demoIf() {
+            const age = prompt('Введите ваш возраст:');
+            if (age === null) return;
+            const num = parseInt(age, 10);
+            let msg;
+            if (isNaN(num)) {
+                msg = 'Это не число!';
+            } else if (num < 18) {
+                msg = 'Вы несовершеннолетний.';
+            } else {
+                msg = 'Вы совершеннолетний.';
+            }
+            document.getElementById('output').innerHTML = '<b>if:</b> ' + msg;
+        }
+
+        // switch
+        function demoSwitch() {
+            const day = prompt('Введите номер дня недели (1–7):');
+            if (day === null) return;
+            const num = parseInt(day, 10);
+            let dayName;
+            switch (num) {
+                case 1: dayName = 'Понедельник'; break;
+                case 2: dayName = 'Вторник'; break;
+                case 3: dayName = 'Среда'; break;
+                case 4: dayName = 'Четверг'; break;
+                case 5: dayName = 'Пятница'; break;
+                case 6: dayName = 'Суббота'; break;
+                case 7: dayName = 'Воскресенье'; break;
+                default: dayName = 'Неверный номер';
+            }
+            document.getElementById('output').innerHTML = '<b>switch:</b> ' + dayName;
+        }
+
+        // for – вывод чисел от 1 до 5
+        function demoFor() {
+            let result = 'Цикл for: ';
+            for (let i = 1; i <= 5; i++) {
+                result += i + ' ';
+            }
+            document.getElementById('output').innerHTML = result;
+        }
+
+        // while – сумма чисел от 1 до 10
+        function demoWhile() {
+            let sum = 0;
+            let i = 1;
+            while (i <= 10) {
+                sum += i;
+                i++;
+            }
+            document.getElementById('output').innerHTML = '<b>while:</b> Сумма чисел от 1 до 10 = ' + sum;
+        }
+
+        // do..while – ввод чисел до тех пор, пока не введён 0
+        function demoDoWhile() {
+            let num, sum = 0;
+            do {
+                num = prompt('Введите число (0 для выхода):');
+                if (num === null) break; // если нажали "Отмена"
+                const val = parseFloat(num);
+                if (!isNaN(val)) {
+                    sum += val;
+                }
+            } while (num !== '0' && num !== null);
+           
+            let total = 0;
+            let input;
+            do {
+                input = prompt('Введите число (0 для выхода):');
+                if (input === null) break;
+                const number = parseFloat(input);
+                if (!isNaN(number) && number !== 0) {
+                    total += number;
+                }
+            } while (input !== '0' && input !== null);
+            document.getElementById('output').innerHTML = '<b>do..while:</b> Сумма введённых чисел (без завершающего 0) = ' + total;
+            
+        }
+
+        
+        function demoDoWhile() {
+            let i = 1;
+            let result = 'Цикл do..while: ';
+            do {
+                result += i + ' ';
+                i++;
+            } while (i <= 5);
+            document.getElementById('output').innerHTML = result;
+        }
+
+       
+        function demoBreakContinue() {
+            let result = 'break / continue: ';
+            for (let i = 1; i <= 10; i++) {
+                if (i % 2 === 0) continue; 
+                if (i > 7) break;           
+                result += i + ' ';
+            }
+            document.getElementById('output').innerHTML = result;
+        }
+
+        // return – функция во внешнем файле external.js
+    
+        function demoReturn() {
+            const num = prompt('Введите число для возведения в квадрат:');
+            if (num === null) return;
+            const val = parseFloat(num);
+            if (isNaN(val)) {
+                alert('Введите число!');
+                return;
+            }
+            const result = square(val); // функция из external.js
+            document.getElementById('output').innerHTML = '<b>return:</b> Квадрат числа ' + val + ' = ' + result;
+        }
+
+      
+
+    </script>
+
+</body>
+</html>

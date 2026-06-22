@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Всё о шпицах</title>
+    <link rel="icon" href="i/qwerty.ico" type="image/x-icon">
+    <!-- Мета-теги -->
+    <meta name="description" content="Сайт о породе собак шпиц: фото, видео, характеристики, стандарты">
+    <meta name="keywords" content="шпиц, померанский, немецкий, собаки, питомцы">
+    <meta name="author" content="ULIANA">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- Шапка сайта с внутренними якорями -->
+
+    <h1>Милые шпицы — порода-компаньон</h1>
+    <p>Разработчик: ULIANA </p>
+    <!-- Меню с ссылками по разделам -->
+    <nav>
+        <ul>
+            <li><a href="#about">О породе</a></li>
+            <li><a href="#gallery">Фотогалерея</a></li>
+            <li><a href="#character">Характеристики</a></li>
+            <li><a href="#media">Аудио и видео</a></li>
+            <li><a href="#table">Сравнение видов</a></li>
+            <li><a href="#form">Опрос</a></li>
+            <li><a href="#links">Полезные ссылки</a></li>
+        </ul>
+    </nav>
+
+
+<hr>
+
+<!-- Основное содержимое -->
+<main>
+
+    <!-- Раздел "О породе" -->
+    <section id="about">
+        <h2>Кто такие шпицы?</h2>
+        <p>
+            Шпиц — одна из древнейших пород собак. Отличается густой пушистой шерстью, 
+            острой мордочкой и весёлым нравом. Шпицы бывают разных размеров: 
+            от миниатюрных померанцев до крупных вольфшпицев. Они очень умны, 
+            преданы хозяину и обожают ласку.
+        </p>
+        <!-- Оформление текста: курсив, подчёркнутый, перечёркнутый -->
+        <p>
+            <i>Померанский шпиц</i> — самый популярный вид. 
+            <u>Их шерсть требует регулярного ухода</u>, 
+            но <s>некоторые думают, что они линяют</s> — на самом деле при правильном вычёсывании линька незаметна.
+        </p>
+    </section>
+
+    <!-- Раздел с изображениями -->
+    <section id="gallery">
+        <h2>Наши шпицы</h2>
+        <figure>
+            <img src="i/1.jpg" alt="Померанский шпиц" width="300" border="1">
+            <figcaption>Померанский шпиц</figcaption>
+        </figure>
+        <figure>
+            <img src="i/2.jpg" alt="Немецкий шпиц" width="300" border="1">
+            <figcaption>Немецкий шпиц</figcaption>
+        </figure>
+        <figure>
+            <img src="i/3.jpg" alt="Белый шпиц" width="300" border="1">
+            <figcaption>Белый шпиц</figcaption>
+        </figure>
+    </section>
+
+    <!-- Раздел характеристик (список) -->
+    <section id="character">
+        <h2>Характеристики шпицев</h2>
+        <ul>
+            <li>Очень пушистый двойной шерстяной покров</li>
+            <li>Не линяют, если регулярно вычёсывать</li>
+            <li>Ласковые и игривые, любят детей</li>
+            <li>Легко обучаются командам</li>
+            <li>Отличные сторожа — звонкий лай</li>
+        </ul>
+    </section>
+
+    <!-- Аудио и видео -->
+    <section id="media">
+        <h2>Песня для атмосферы</h2>
+        <audio controls>
+            <source src="a/qwerty.mp3" type="audio/mpeg">
+            Ваш браузер не поддерживает audio.
+        </audio>
+
+        <h2>Забавное видео о померанцах</h2>
+        <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/B-VAuFQ0wTQ" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </section>
+
+    <!-- Таблица с объединёнными ячейками  -->
+    <section id="table">
+        <h2>Сравнение видов шпицев</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <caption>Сравнительная таблица пород</caption>
+            <tr>
+                <th>Вид</th>
+                <th>Высота в холке</th>
+                <th>Вес</th>
+                <th>Окрас</th>
+            </tr>
+            <tr>
+                <td>Померанский шпиц</td>
+                <td>18–22 см</td>
+                <td>1,5–3,5 кг</td>
+                <td rowspan="2">Более 12 вариантов</td> <!-- объединение по вертикали -->
+            </tr>
+            <tr>
+                <td>Малый немецкий шпиц</td>
+                <td>23–29 см</td>
+                <td>8–11 кг</td>
+            </tr>
+            <tr>
+                <td>Средний шпиц</td>
+                <td colspan="2">30–38 см, 11–15 кг</td> <!-- объединение по горизонтали -->
+                <td>Разные</td>
+            </tr>
+            <tr>
+                <td>Вольфшпиц (кеесхонд)</td>
+                <td>43–55 см</td>
+                <td>25–30 кг</td>
+                <td>Серый с подпалом</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Форма обратной связи (опрос) -->
+    <section id="form">
+        <h2>Опрос: Ваша любимая порода шпица</h2>
+    <form action="thanks.html" method="GET">
+    <!-- все поля формы остаются без изменений -->
+            <p>
+                <label>Ваше имя: <input type="text" name="name" placeholder="Введите имя"></label>
+            </p>
+            <p>
+                <label>Email: <input type="email" name="email" placeholder="example@mail.ru"></label>
+            </p>
+            <p>Какой вид шпица вам нравится больше?</p>
+            <p>
+                <label><input type="radio" name="breed" value="pomeranian"> Померанский</label><br>
+                <label><input type="radio" name="breed" value="german"> Немецкий</label><br>
+                <label><input type="radio" name="breed" value="wolf"> Вольфшпиц</label><br>
+                <label><input type="radio" name="breed" value="other"> Другой</label>
+            </p>
+            <p>
+                <label>Дополнительные пожелания:<br>
+                <textarea name="comments" rows="4" cols="50" placeholder="Напишите что-нибудь..."></textarea>
+                </label>
+            </p>
+            <p>
+                <input type="checkbox" name="subscribe" checked> 
+                <label>Подписаться на новости о шпицах</label>
+            </p>
+            <p>
+                <button type="submit">Отправить</button>
+                <button type="reset">Очистить</button>
+            </p>
+        </form>
+    </section>
+
+    <!-- Внешние ссылки и внутренние якоря (уже реализованы в меню) -->
+    <section id="links">
+        <h2>Полезные ссылки</h2>
+        <ul>
+            <li><a href="https://ru.wikipedia.org/wiki/Немецкий_шпиц" target="_blank">Википедия: Немецкий шпиц</a></li>
+            <li><a href="https://rkf.org.ru/standards/немецкий-шпиц/" target="_blank">Стандарт породы (РКФ)</a></li>
+            <li><a href="https://www.youtube.com/results?search_query=померанский+шпиц" target="_blank">YouTube — подборка видео</a></li>
+            <li><a href="https://www.akc.org/dog-breeds/pomeranian/" target="_blank">AKC: Pomeranian (англ.)</a></li>
+            
+        </ul>
+    </section>
+
+    <!-- Дополнительно: спецсимволы -->
+    <p>Мы любим шпицев ❤️ &hearts; &copy; &trade; &reg; &laquo; &raquo; и всегда рады новым друзьям!</p>
+
+</main>
+
+<hr>
+
+
+
+    <p style="text-align:center;">© 2026 Сайт о шпицах. Все права защищены. ❤️</p>
+    <!-- Кнопка для возврата наверх (внутренняя ссылка) -->
+    <p style="text-align:center;"><a href="#">Наверх</a></p>
+
+
+</body>
+</html>

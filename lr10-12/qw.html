@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>задание</title>
+
+    <!-- Задание 1: скрипт в HEAD -->
+    <script>
+        function showCurrentDay() {
+            const now = new Date();
+            const day = now.getDate(); 
+            alert("Текущий день месяца: " + day);
+        }
+    </script>
+
+    <!-- Подключение внешних файлов для заданий 3 и 4 -->
+    <script src="task3.js"></script>
+    <script src="task4.js"></script>
+</head>
+<body>
+
+    <h1>Решение заданий (Вариант №3)</h1>
+
+    <!-- № 1 -->
+    <section>
+        <h2>Задание 1. Объект Date</h2>
+        <button onclick="showCurrentDay()">Показать день</button>
+       
+    </section>
+
+    <!-- № 2 скрипт в BODY -->
+    <section>
+        <h2>Задание 2. Цикл for (вывод ФИО)</h2>
+        <div id="task2Output"></div>
+        <script>
+           
+            const n = 3;
+            const repeatCount = n + 5;
+            const fullName = "Макаревич Ульяна"; 
+            let output = "";
+            for (let i = 0; i < repeatCount; i++) {
+                output += (i + 1) + ". " + fullName + "<br>";
+            }
+            document.getElementById("task2Output").innerHTML = output;
+        </script>
+    </section>
+
+    <!-- №3 внешний файл task3.js -->
+    <section>
+        <h2>Задание 3. Объект Array (сумма положительных)</h2>
+        <p>
+            Массив: <span id="arrayDisplay"></span><br>
+            Сумма положительных элементов: <span id="sumPositiveDisplay"></span>
+        </p>
+        <script>
+            
+            // Вызываем её и выводим результат
+            const arr = [3, -1, 5, -2, 8]; 
+            document.getElementById("arrayDisplay").textContent = arr.join(", ");
+            const sumPos = sumPositive(arr);
+            document.getElementById("sumPositiveDisplay").textContent = sumPos;
+        </script>
+    </section>
+
+    <!-- №4 внешний файл task4.js -->
+    <section>
+    <h2>Задание 4. Расчёт по формуле</h2>
+    <p>
+        Введите x и y (в радианах):<br>
+        x = <input type="number" id="xInput" step="any" value="0.5"><br>
+        y = <input type="number" id="yInput" step="any" value="0.3"><br>
+        <button onclick="calculateAndDisplay()">Вычислить</button>
+    </p>
+    <div id="mathResult"></div>
+    <script>
+        function calculateAndDisplay() {
+            const x = parseFloat(document.getElementById("xInput").value);
+            const y = parseFloat(document.getElementById("yInput").value);
+            if (isNaN(x) || isNaN(y)) {
+                document.getElementById("mathResult").innerHTML = "Введите корректные числа.";
+                return;
+            }
+            const result = computeExpression(x, y);
+            if (result.error) {
+                document.getElementById("mathResult").innerHTML = "Ошибка: " + result.error;
+                return;
+            }
+            document.getElementById("mathResult").innerHTML = 
+            
+                "(sin x + cos y) = " + result.numerator.toFixed(2) + "<br>" +
+                "(cos y – sin x) = " + result.denominator.toFixed(2) + "<br>" +
+                "tg(x·y) = " + result.tanXY.toFixed(2)+ "<br>"+
+                "Результат: <strong>" + result.value.toFixed(2) + "</strong><br>";
+        }
+        // Автоматический расчёт при загрузке 
+        window.onload = function() {
+            setTimeout(calculateAndDisplay, 100);
+        };
+    </script>
+</section>
+
+    <!-- №5 работа со строками -->
+    <section>
+        <h2>Задание 5. Объект String</h2>
+        <button onclick="processStrings()">Выполнить операции со строками</button>
+        <div id="stringResult"></div>
+        <script>
+            function processStrings() {
+                let S1 = "Ульяна";  
+                let S2 = "рисование чтение"; 
+
+                // Длина строки1
+                const lenS1 = S1.length;
+
+                //  Вставить дополнительные пробелы между словами в стрроку2
+        
+                let words = S2.split(' ');
+                words = words.filter(w => w.length > 0);
+                const S2modified = words.join('  ');
+
+              
+                const S1replaced = S1.replace(S1, "Павел");
+                const S2visible = S2modified.replace(/ /g, '&nbsp;');
+
+                // Вывод результатов
+                 const output = `
+                     <p>Исходная S1: "${S1}"</p>
+                     <p>Исходная S2: "${S2}"</p>
+                     <p>Длина S1: ${lenS1}</p>
+                     <p>S2 с дополнительными пробелами: "${S2visible}"</p>
+                    <p>S1 после замены: "${S1replaced}"</p>
+    `                           ;
+                        document.getElementById("stringResult").innerHTML = output;
+            }
+        </script>
+    </section>
+
+    <!-- №6 объектная модель браузера -->
+    <section>
+        <h2>Задание 6. BOM</h2>
+        <button onclick="openInfoWindow()">Открыть окно с информацией</button>
+        <script>
+            function openInfoWindow() {
+                // Получаем информацию
+                const os = navigator.platform; 
+                const browser = navigator.userAgent;
+
+                // Создаём новое окно
+                const win = window.open("", "_blank", "width=400,height=200");
+                if (!win) {
+                    alert("Разрешите всплывающие окна для этого сайта.");
+                    return;
+                }
+                win.document.write(`
+                    <html>
+                        <head><title>Информация о системе</title></head>
+                        <body>
+                            <h3>Информация о вашей системе</h3>
+                            <p><strong>Операционная система (platform):</strong> ${os}</p>
+                            <p><strong>Браузер (userAgent):</strong> ${browser}</p>
+                            <p><em>Это окно закроется через 5 секунд...</em></p>
+                        </body>
+                    </html>
+                `);
+                win.document.close();
+
+        
+                setTimeout(() => {
+                    win.close();
+                }, 5000);
+            }
+        </script>
+    </section>
+
+</body>
+</html>
