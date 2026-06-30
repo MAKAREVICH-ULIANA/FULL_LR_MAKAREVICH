@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Адаптивная сетка</title>
+  <link rel="stylesheet" href="tovar.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <header class="header">
+    <div class="container">
+      <div class="logo"><a href="#">Мой магазин</a></div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#" class="nav-links">Главная</a></li>
+        <li><a href="#" class="nav-links">Каталог</a></li>
+        <li><a href="#" class="nav-links">О нас</a></li>
+        <li><a href="#" class="nav-links">Контакты</a></li>
+      </ul>
+      <div class="burger" id="burgerBtn">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="row row-1">
+      <div class="box box-1">блок 1</div>
+      <div class="box box-2">блок 2</div>
+    </div>
+
+    <div class="row row-2">
+      <div class="box box-3">блок 3</div>
+      <div class="box box-4">блок 4</div>
+      <div class="box product-card">
+        <div class="image-container">
+          <div class="promo-badge">ПО АКЦИИ</div>
+          <button class="favorite-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.84-8.84 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </button>
+          <img src="pic/foto.jpg" alt="Фоторамка" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Фоторамка сердце большая белая</h3>
+          <div class="rating">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <div class="stock-status"><span class="check-icon">✓</span> Есть в наличии</div>
+          <div class="price-block">
+            <span class="current-price">29.90 руб</span>
+            <span class="old-price">45.90 руб</span>
+          </div>
+          <div class="actions">
+            <div class="counter">
+              <button class="count-btn" data-delta="-1" type="button">−</button>
+              <input type="text" class="quantity-input" value="1" readonly>
+              <button class="count-btn" data-delta="1" type="button">+</button>
+            </div>
+            <button class="add-to-cart" type="button">В корзину</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-3">
+      <div class="box box-6">блок 6</div>
+      <div class="box box-7">блок 7</div>
+    </div>
+
+    <div class="row row-4">
+      <div class="box box-8">блок 8</div>
+    </div>
+
+    <div class="row row-5">
+      <div class="overlay" id="formOverlay">
+        <div class="form-card">
+          <button class="close-btn" id="closeFormBtn" type="button">✕</button>
+          <h2 class="form-title">Заполните форму и получите готовое решение по привлечению клиентов и увеличению прибыли</h2>
+          <form action="#" method="POST" class="lead-form">
+            <div class="input-group">
+              <input type="text" name="name" placeholder="Ваше имя*" required>
+            </div>
+            <div class="input-group">
+              <input type="tel" name="phone" placeholder="Ваш телефон*" required>
+            </div>
+            <div class="input-group">
+              <input type="email" name="email" placeholder="Ваш email" required>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="consent" name="consent" required>
+              <label for="consent">Я согласен на обработку своих персональных данных</label>
+            </div>
+            <button type="submit" class="submit-btn">Получить решение</button>
+          </form>
+          <p class="form-note">Нажимая на кнопку, вы даете согласие на обработку персональных данных</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">Подвал</footer>
+</div>
+
+<script>
+  // Избранное (сердечко)
+  document.querySelectorAll('.favorite-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      this.classList.toggle('active');
+    });
+  });
+
+  // Счётчик 
+  document.querySelectorAll('.counter').forEach(counter => {
+    const input = counter.querySelector('.quantity-input');
+    const minus = counter.querySelector('[data-delta="-1"]');
+    const plus = counter.querySelector('[data-delta="1"]');
+
+    function update(delta) {
+      let val = parseInt(input.value);
+      if (isNaN(val)) val = 1;
+      let newVal = val + delta;
+      if (newVal >= 1) input.value = newVal;
+    }
+
+    if (minus) minus.addEventListener('click', () => update(-1));
+    if (plus) plus.addEventListener('click', () => update(1));
+  });
+
+  // Корзина
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+      this.classList.toggle('added');
+      this.textContent = this.classList.contains('added') ? 'Добавлено' : 'В корзину';
+    });
+  });
+
+  // Закрытие формы
+  const closeBtn = document.getElementById('closeFormBtn');
+  const overlay = document.getElementById('formOverlay');
+  if (closeBtn && overlay) {
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+  }
+
+  // Бургер
+  const burger = document.getElementById('burgerBtn');
+  const navMenu = document.getElementById('navMenu');
+  if (burger && navMenu) {
+    burger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+    navMenu.querySelectorAll('.nav-links').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  }
+
+  
+</script>
+</body>
+</html>
+
+
+
